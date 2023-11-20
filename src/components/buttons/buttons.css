@@ -1,0 +1,60 @@
+:root{
+    --danger-font-color : rgb(175, 84, 84);
+    --danger-bg: rgb(244, 229, 229);
+    --danger-hover-bg: rgb(226, 213, 213);
+}
+
+.footerBtn{
+    background-color: var(--danger-bg);
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    color: var(--danger-font-color);
+    border-radius: 7.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+        background-color: var(--danger-hover-bg);
+    }
+    &:active{
+        opacity: 0.8;
+    }
+    &:focus{
+        outline: 2px solid var(--theme-color);
+    }
+}
+
+.chip{
+    background-color: var(--primary-bg);
+    padding: 5px 10px;
+    border-radius: 7.5px;
+    color: var(--theme-color)
+}
+
+.theme-toggle-button{
+    /* padding: 10px; */
+    border-radius: 100px;
+    font-size: 18px;
+    width: 30px;
+    height:30px;
+    border: none;
+    background-color: var(--primary-bg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+
+    &:hover{
+        background-color: var(--bg-primary);
+    }
+    &:active{
+        opacity: 0.8;
+    }
+    &:focus{
+        outline: 2px solid var(--theme-color);
+    }
+}

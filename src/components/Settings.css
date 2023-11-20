@@ -1,0 +1,75 @@
+
+.settings-page{
+    width: 100%;
+    flex:1;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    & h2{
+        margin-bottom: 20px;
+    }
+}
+
+.settings-item {
+    width: 100%;
+    max-width: 900px;
+    height: 50px;
+    background-color: var(--secondary-bg);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    & p{
+        color: var(--theme-color)
+    }
+}
+
+.settings-option-box{
+    padding: 5px 10px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-left: 10px;
+    position: relative;
+
+    & button{
+        min-width: 70px;
+        padding: 5px 10px;
+        background-color: transparent;
+        font-weight: 500;
+        font-size: 16px;
+        border: none;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    & div {
+        position: absolute;
+        background-color: var(--indicator-bg);
+        z-index: 1;
+        transition: left 0.25s ease;
+        border-radius: 5px;
+    }
+}
+
+@keyframes sp-anim{
+    0%{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

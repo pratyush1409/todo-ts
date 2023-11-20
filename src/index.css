@@ -1,0 +1,565 @@
+
+:root{
+    --normal-font-color: rgb(90, 90, 90);
+    --extreme-bg: white;
+    --primary-bg: rgb(250, 250, 250);
+    --secondary-bg: rgb(245, 245, 245);
+    --normal-btn-bg: rgb(225,225,225);
+    
+    --normal-border-color: rgb(225, 225, 225);
+    --imp-border-color: rgb(200,200,200);
+
+    --theme-color: rgb(47, 107, 164);
+
+    --tda-btn-hov-bg: rgb(200,200,200);
+    
+    --tdi-bg: rgb(245, 245, 245);
+    --tdi-btn-bg: rgb(240, 240, 240);
+    --tdi-btn-hov-bg: rgb(235, 235, 235);
+    --tdi-btn-act-bg: rgb(220, 220, 220);
+
+    --tdi-done-bg: rgb(225,225,225);
+    --tdi-done-border-color: rgb(94, 153, 67);
+    --tdi-done-check-btn-bg:rgb(170 218 147);
+    --tdi-done-check-btn-hov-bg: rgb(142, 220, 103);
+    
+    --del-btn-fg: rgb(174 78 78);
+    --cancel-fg: rgb(234, 73, 73);
+    --save-icon-fg: rgb(125, 176, 48);
+
+    --scrollbar-bg: rgb(245,245,245);
+    --scrollbar-thumb-bg: rgba(225,225,225);
+    --scrollbar-thumb-hov-bg: rgb(200,200,200);
+
+    --indicator-bg:white;
+
+    --ui-shade-color: rgba(0, 0, 0, 0.05);
+    --ui-shade2-color: rgba(0, 0, 0, 0.1);
+    --ui-shade3-color: rgba(27, 27, 27, 0.02);
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--normal-font-color);
+    -webkit-tap-highlight-color: transparent;
+}
+
+#root{
+    width: 100%;
+    height: 100vh;
+    background: var(--primary-bg);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.container{
+    flex: 1;
+    display: flex;
+    width:100%;
+    /* max-width:850px; */
+    flex-direction: column;
+    /* min-height: 600px; */
+    height: 95vh;
+    background-color: var(--extreme-bg);
+    /* margin-bottom: 10px; */
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid var(--normal-border-color);
+    box-shadow: 10px 10px 25px var(--ui-shade2-color), inset 0 0 500px var(--ui-shade-color);
+    justify-content: space-between;
+    container-name: app-container;
+    container-type: inline-size;
+
+    & .top-bar {
+        width:100%; 
+        min-height: 30px; 
+        background-color: var(--secondary-bg);
+        box-shadow: inset 0 0 25px var(--ui-shade3-color);
+        border-bottom: 2px solid var(--normal-border-color);
+        padding: 5px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        container-name: top-bar;
+        container-type: inline-size;
+
+        & svg {
+            min-width:50px;
+            width: 50px;
+            transform: none;
+        }
+
+        & h3{
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--normal-font-color);    
+            white-space:nowrap;
+        }
+
+        & i{
+            font-size: 20px;
+            color: var(--normal-font-color);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 7.5px;
+            transition: all 0.1s;
+
+            &:hover{
+                background-color: var(--ui-shade-color);
+            }
+
+            &:active{
+                background-color: var(--ui-shade2-color);
+                opacity:0.8;
+            }   
+        }    
+    }
+    
+    & footer{
+        width: 100%;
+        border-top: 2px solid var(--normal-border-color);  
+        padding: 7.5px 15px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: var(--normal-font-color);
+        font-weight: 600;
+        background-color: var(--secondary-bg);
+        gap: 10px;
+    }
+
+    & section{
+        --anim-direction: 1; /* this variable will be accessed in the keyframes animation (see Container.ts) */
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 1; /* This will give all the remaining height available (of containainer) to the section */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding: 10px;
+        padding-top: 20px;
+        /* background-color: white; */
+    }
+}
+
+.todo-adder{
+    height: 50px;
+    min-height: 50px;
+    max-width: 900px; 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: var(--secondary-bg);
+    border: none;
+    box-shadow: 0px 10px 50px var(--ui-shade-color);
+    border: 1px solid var(--imp-border-color);
+    margin-bottom: 15px;
+    --anim-direction:1;
+    animation: todo-adder-anim 0.5s 1 ease-out;
+    container-name: todo-adder;
+    container-type: inline-size;
+    
+    & button{
+        border: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 10px 20px;
+        height: 100%;
+        cursor: pointer;
+        font-weight: 500;
+        background-color: var(--normal-btn-bg);
+        color: var(--normal-font-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        &:hover{
+            background-color: var(--tda-btn-hov-bg);
+        }
+        &:active{
+            opacity: 0.7;
+        }
+        &:focus{
+            outline: 3px solid var(--theme-color);
+            outline-offset: -3px;
+        }
+    }
+    & .disabled{
+        opacity:0.5!important;
+    }
+    & input{
+        height: 100%;
+        flex:1;
+        background-color: transparent;
+        color: var(--normal-font-color);
+        font-size: 18px;
+        border: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding: 10px 20px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+        &::placeholder{
+            opacity: 0.5;
+            color: var(--normal-font-color);
+        }
+        &:focus{
+            background-color: var(--primary-bg);
+            outline: 3px solid var(--theme-color);
+            outline-offset: -3px;
+
+        }
+        &:hover{
+            background-color: var(--primary-bg);
+        }
+    }
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden; 
+    border-radius: 10px;
+    flex: 1;
+    &::before, &::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        /* min-height: 100ch; */
+        z-index: 999;
+
+        height: 25px;
+        margin-right: 20px;
+    }
+
+    &::before{
+        background: linear-gradient(0deg, transparent 0%, var(--primary-bg) 100%);
+        top:0;
+    }
+
+    &::after{
+        background: linear-gradient(0deg, var(--primary-bg) 0%,  transparent 100%);
+        bottom: 0;
+    }
+    & .subwrp{
+        /* background-color: red; */
+        scrollbar-gutter: stable both-edges;
+        scroll-behavior: smooth;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+        padding-top: 20px ;
+        padding-bottom: 20px ;
+        padding-left: 10px;
+        padding-right: 10px ;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height:auto;
+        &::-webkit-scrollbar{
+            background-color: transparent;
+            width: 5px;
+        }
+        &::-webkit-scrollbar:hover{
+            background-color: var(--scrollbar-bg);
+        }
+        &::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb-bg);
+            border-radius: 10px;
+          }
+        &::-webkit-scrollbar-thumb:hover{
+          background-color: var(--scrollbar-thumb-hov-bg);
+        }
+        
+    }
+
+}
+
+.todo-item{
+    background-color: var(--tdi-bg);
+    max-width: 900px;
+    width:100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px var(--ui-shade-color);
+    border: 1px solid var(--imp-border-color);
+    margin-bottom: 10px;
+    transition: background-color  0.2s;
+    opacity: 0;
+    animation: todo-item-anim 0.25s ease forwards;
+    z-index: 1;
+    container-name: todo-item;
+    container-type: inline-size;
+
+    &:hover{
+        box-shadow: none;
+        background-color: var(--primary-bg);
+    }
+
+
+    & span{
+        font-weight: 500;
+        color: var(--theme-color);
+    }
+
+    &  p, textarea {
+        font-weight: 500;
+        flex: 1;
+        background-color: transparent;
+        border: none;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 16px;
+        width: auto;
+        min-width: 0;
+        border-radius: 5px;
+        resize: none;
+
+        &::-webkit-scrollbar{
+            cursor: default;
+            background-color: transparent;
+            width: 10px;
+        }
+        &::-webkit-scrollbar:hover{
+            cursor: default;
+            background-color: var(--scrollbar-bg);
+        }
+        &::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb-bg);
+            border-radius: 10px;
+            cursor: pointer !important;
+        }
+        &::-webkit-scrollbar-thumb:hover{
+            background-color: var(--scrollbar-thumb-hov-bg);
+        }
+
+        &:focus{
+            outline: 3px solid var(--theme-color);
+        }
+
+    }
+
+    /* & .desktop-button-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 100%;
+    } */
+
+    & button{
+        padding: 5.5px 10px;
+        font-size: 16px;
+        border-radius: 7.5px;
+        cursor: pointer;
+        font-weight: 500;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--tdi-btn-bg);
+        transition: opacity 0.1s;
+        &:hover{
+            background-color: var(--tdi-btn-hov-bg);
+        }
+        &:active{
+            background-color: var(--tdi-btn-act-bg);
+            opacity: 0.75;
+        }
+        &:focus{
+            outline: 2px solid var(--theme-color);
+        }
+    }
+    & .todo-remove-icon{
+        color: var(--del-btn-fg);
+    }
+
+    & .save-icon{
+        color: var(--save-icon-fg);
+    }
+    & .cross {
+        color: var(--cancel-fg);
+    }
+}
+
+.desktop-button-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+}
+
+.todo-item-done{
+    background-color: var(--tdi-done-bg) !important;
+    border-color: var(--tdi-done-border-color);   
+    & .tdi-check-btn{
+        background-color: var(--tdi-done-check-btn-bg) !important;
+        
+        &:hover{
+            background-color: var(--tdi-done-check-btn-hov-bg) !important;
+        }
+    }
+}
+
+@keyframes todo-item-anim{
+    0%{
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+        /* z-index: -1; */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        /* z-index: 0.5; */
+    }
+}
+
+@keyframes todo-adder-anim{
+    0%{
+        opacity: 0.1;
+        transform: translateX( calc(var(--anim-direction) * -75px) ) ;
+    }
+    60%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    80%{
+        transform: scale(1.05);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes todo-remove-anim{
+    0%{
+        opacity: 1;
+        transform: translateX(0) scaleY(1);
+         
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50px) scaleY(0.1) ;
+    }
+}
+
+@keyframes display-area-change-anim {
+    0%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    40%{
+        opacity: 0;
+        transform: translateX(calc(var(--anim-direction) * -75px));
+    }
+    60%{
+        opacity: 0;
+        transform: translateX(calc(var(--anim-direction) * 75px));
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.top-logo{
+    fill: var(--primary-bg);
+    stroke: var(--theme-color);
+    & .logo-line {
+        fill: var(--theme-color);
+        stroke: none;
+    }
+}
+
+.todo-filter-box{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   padding: 0 20px;
+   /* padding-top: 10px; */
+   max-width: 900px;
+   height: 50px;
+   font-weight: 500;
+   color: var(--theme-color);
+   background-color: var(--secondary-bg);
+   border-radius: 10px;
+   position: relative;
+   animation: todo-adder-anim 0.5s ease;
+   margin-bottom: 10px;
+   --anim-direction: -1;
+   container-type: inline-size;
+   container-name: todo-filter-box;
+
+    & .indicator{
+        position: absolute;
+        border-radius: 7px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: var(--indicator-bg);
+        transition: left 250ms ease, width 250ms ease;
+        margin-top: 5px;
+        border-bottom: 2.5px solid var(--theme-color);
+        display: flex;
+        height: calc(100% - 7.5px);
+    }
+
+   & button{
+    height: calc(100% - 10px);
+    min-width: 100px;
+    color: var(--normal-font-color);
+    background-color: transparent;
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 5;
+    
+    &:focus-visible {
+        outline: 2px solid var(--theme-color);
+    }
+    
+
+    &:active{
+        opacity: 0.8;
+    }
+   }
+
+   & .inactive-option{
+        &:hover{
+                background-color: var(--primary-bg);
+            }
+   }
+
+   & .active-option {
+    color: var(--theme-color)
+    }
+
+}
